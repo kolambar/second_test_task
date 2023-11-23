@@ -1,0 +1,10 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+      <div class="jumbotron text-center mx-auto">
+        <h1>Ваша ссылка на оплату:</h1>
+        <a class="btn btn-lg btn-primary" href="{{ payment_link }}" role="button">Оплатить &raquo;</a>
+      </div>
+    </main>
+{% endblock %}

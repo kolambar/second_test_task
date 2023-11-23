@@ -1,0 +1,15 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+      <div class="jumbotron text-center mx-auto">
+        <h1>Корзина</h1>
+          <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-lg btn-primary">Купить  &raquo;</button>
+          </form>
+
+      </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+      <div class="jumbotron text-center mx-auto">
+        <h1>{{ object.name }}</h1>
+        <p class="lead">{{ object.description }}</p>
+        <a class="btn btn-lg btn-primary" href="{% url 'item:buy' object.id %}" role="button">Купить за {{ object.price }} {{ object.currency }} &raquo;</a>
+      </div>
+    </main>
+{% endblock %}
