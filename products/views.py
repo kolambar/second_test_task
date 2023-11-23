@@ -18,7 +18,7 @@ def page_with_pay_link(request, pk):
     item = get_object_or_404(Item, pk=pk)
 
     session = get_payment(item)
-    context = {"payment_link": session.url}
+    context = {"payment_link": session.url}  # Ссылка на стр оплаты
 
     return render(request, 'products/page_with_link.html', context)
 
@@ -32,10 +32,11 @@ def success_page(request, pk):
 
 
 def orders_create(request):
+
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST)  # форма для создания корзины
         order = form.save()
-        return redirect(f'/basket/{order.id}')
+        return redirect(f'/basket/{order.id}')  # при успешном создании отправляет на стр со ссылкой на оплату
     else:
         form = OrderForm()
 
@@ -47,14 +48,12 @@ def basket_pay_link(request, pk):
     order = get_object_or_404(Order, pk=pk)
 
     session = get_basket_payment(order)
-    context = {"payment_link": session.url}
+    context = {"payment_link": session.url}  # Ссылка на стр оплаты
 
     return render(request, 'products/page_with_link.html', context)
 
 
-def basket_success_page(request, pk):
+def basket_success_page(request):
 
-    order = get_object_or_404(Order, pk=pk)
-    context = {"item": 'собранной корзины'}
-
+    context = {"item": 'собранной корзины'}  # тут важно передать контекст: success_page.html используется и для item
     return render(request, 'products/success_page.html', context)

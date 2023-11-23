@@ -7,14 +7,16 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class Item(models.Model):
+
     CUR = (
         ('USD', 'доллары'),
         ('RUB', 'рубли'),
-    )
+    )  # тут можно добавить валюту
+
     name = models.CharField(max_length=100, verbose_name='Название', unique=True)
     description = models.TextField(verbose_name='описание', **NULLABLE)
     price = models.IntegerField(verbose_name='цена')
-    currency = models.CharField(max_length=10, verbose_name='способ оплаты', choices=CUR)
+    currency = models.CharField(max_length=10, verbose_name='способ оплаты', choices=CUR)  # валюты две. добавить можно в CUR
 
     def __str__(self):
         return f'{self.name} - {self.price}{self.currency}'
