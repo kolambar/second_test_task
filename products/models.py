@@ -16,6 +16,20 @@ class Item(models.Model):
     price = models.IntegerField(verbose_name='цена')
     currency = models.CharField(max_length=10, verbose_name='способ оплаты', choices=CUR)
 
+    def __str__(self):
+        return f'{self.name} - {self.price}{self.currency}'
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+
+class Order(models.Model):
+    items = models.ManyToManyField(Item, verbose_name='Товары')
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
+
+    def __str__(self):
+        return ', '.join(str(item) for item in self.items.all())
