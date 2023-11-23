@@ -1,3 +1,5 @@
+import os
+
 from config.settings import stripe
 
 
@@ -11,7 +13,7 @@ def get_payment(item):
     )
 
     session = stripe.checkout.Session.create(
-      success_url=f"http://127.0.0.1:8000/success/{item.pk}",
+      success_url=f"{os.getenv('BASE_URL')}/success/{item.pk}",
       line_items=[
         {
           "price": price.id,
