@@ -55,7 +55,7 @@ def get_basket_payment(order: Order):
 
     line_items = [{"price": price.id, "quantity": 1} for price in price_list]  # Список словарей для создания сессии
     session = stripe.checkout.Session.create(
-        success_url=f"{os.getenv('BASE_URL')}/basket_success/{order.pk}",  # Ссылка при успешном платеже
+        success_url=f"{os.getenv('BASE_URL')}/basket_success",  # Ссылка при успешном платеже
         line_items=line_items,
         mode="payment",
     )
