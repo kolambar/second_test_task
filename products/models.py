@@ -26,7 +26,7 @@ class Item(models.Model):
         verbose_name_plural = 'Товары'
 
 
-class Order(models.Model):
+class Order(models.Model):  # С помощью корзины можно покупать сразу несколько товаров
     items = models.ManyToManyField(Item, verbose_name='Товары')
 
     class Meta:
